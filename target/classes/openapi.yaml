@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  description: defaultDescription
+  title: loginApi
+  version: "0.1"
+servers:
+- url: https://localhost:8080/
+paths:
+  /login2:
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+      - example: password
+        explode: true
+        in: query
+        name: password
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: email
+        explode: true
+        in: query
+        name: email
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: https://localhost:8080/
+      x-accepts: application/json
+    servers:
+    - url: https://localhost:8080/
+  /login:
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+      - example: password
+        explode: true
+        in: query
+        name: password
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: email
+        explode: true
+        in: query
+        name: email
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+      servers:
+      - url: https://localhost:8080/
+      x-accepts: application/json
+    servers:
+    - url: https://localhost:8080/
+components:
+  schemas:
+    UserTable:
+      properties:
+        id:
+          format: int64
+          type: integer
+      type: object
