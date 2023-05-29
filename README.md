@@ -1,7 +1,7 @@
 		Generate Spring Boot server using OPENAPI-GENERATOR 
     <-- Download SOP -->
     
-1. donwload the OPEN API extention in VS code 
+# donwload the OPEN API extention in VS code 
 2. Create and define end points using the OpenAPI extentions. Click the option button in path to add paths. Define the method , Desc , Response accordingly.
 3. Verify the end point using the button on the top right corner
 4. Open Terminal and go to the directory of the yaml file.
