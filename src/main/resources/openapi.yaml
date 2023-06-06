@@ -1,72 +1,184 @@
 openapi: 3.0.3
 info:
-  description: defaultDescription
-  title: loginApi
-  version: "0.1"
+  contact:
+    email: rohan.bhandari@iictechnologies.com
+  description: Sample User Management API
+  title: API FIRST DOCUMENTATION
+  version: "1.0"
 servers:
-- url: https://localhost:8080/
+- url: https:localhost:8080
+security:
+- BasicAuth: []
+tags:
+- name: user
 paths:
-  /login2:
+  /user:
     get:
-      description: Auto generated using Swagger Inspector
-      parameters:
-      - example: password
-        explode: true
-        in: query
-        name: password
-        required: false
-        schema:
-          type: string
-        style: form
-      - example: email
-        explode: true
-        in: query
-        name: email
-        required: false
-        schema:
-          type: string
-        style: form
+      operationId: getUsers
       responses:
         "200":
-          description: Auto generated using Swagger Inspector
-      servers:
-      - url: https://localhost:8080/
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserWithId'
+          description: successful operation
+      summary: Get all users
+      tags:
+      - user
       x-accepts: application/json
-    servers:
-    - url: https://localhost:8080/
-  /login:
-    get:
-      description: Auto generated using Swagger Inspector
+      x-tags:
+      - tag: user
+    post:
+      operationId: postUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: An error happen on validation
+        "409":
+          description: E- mail already exists
+      summary: Insert a new user
+      tags:
+      - user
+      x-codegen-request-body-name: body
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: user
+  /user/{id}:
+    delete:
+      operationId: deleteById
       parameters:
-      - example: password
-        explode: true
-        in: query
-        name: password
-        required: false
+      - description: Order ID
+        explode: false
+        in: path
+        name: id
+        required: true
         schema:
+          format: uuid
           type: string
-        style: form
-      - example: email
-        explode: true
-        in: query
-        name: email
-        required: false
+        style: simple
+      responses:
+        "204":
+          description: successful operation
+        "400":
+          content: {}
+          description: Invalid ID supplied
+        "404":
+          content: {}
+          description: Not found
+      summary: Delete user by id
+      tags:
+      - user
+      x-accepts: application/json
+      x-tags:
+      - tag: user
+    get:
+      operationId: getById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
         schema:
+          format: uuid
           type: string
-        style: form
+        style: simple
       responses:
         "200":
-          description: Auto generated using Swagger Inspector
-      servers:
-      - url: https://localhost:8080/
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserWithId'
+          description: successful operation
+        "400":
+          content: {}
+          description: Invalid ID supplied
+        "404":
+          content: {}
+          description: Not found
+      summary: Get user by id
+      tags:
+      - user
       x-accepts: application/json
-    servers:
-    - url: https://localhost:8080/
+      x-tags:
+      - tag: user
+    put:
+      operationId: patchUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "204":
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Not found
+      summary: Update user information
+      tags:
+      - user
+      x-codegen-request-body-name: body
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: user
 components:
   schemas:
-    UserTable:
+    User:
+      example:
+        password: password
+        login: login
+        type: TYPE_ADMIN
       properties:
-        id:
-          format: int64
-          type: integer
+        login:
+          description: login
+          type: string
+        password:
+          format: password
+          type: string
+        type:
+          enum:
+          - TYPE_ADMIN
+          - TYPE_USER
+          type: string
+      required:
+      - login
+      - password
+      - type
       type: object
+    UserWithId:
+      allOf:
+      - $ref: '#/components/schemas/User'
+      - $ref: '#/components/schemas/UserWithId_allOf'
+    UserWithId_allOf:
+      properties:
+        user_id:
+          format: UUID
+          type: string
+      required:
+      - user_id
+      type: object
+      example: null
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http

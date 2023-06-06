@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -15,32 +17,33 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * UserTable
+ * UserWithIdAllOf
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-25T11:47:48.424368300-07:00[America/Vancouver]")
-public class UserTable {
+@JsonTypeName("UserWithId_allOf")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-06-06T13:14:03.551847800-07:00[America/Vancouver]")
+public class UserWithIdAllOf {
 
-  @JsonProperty("id")
-  private Long id;
+  @JsonProperty("user_id")
+  private UUID userId;
 
-  public UserTable id(Long id) {
-    this.id = id;
+  public UserWithIdAllOf userId(UUID userId) {
+    this.userId = userId;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get userId
+   * @return userId
   */
-  
-  @Schema(name = "id", required = false)
-  public Long getId() {
-    return id;
+  @NotNull @Valid 
+  @Schema(name = "user_id", required = true)
+  public UUID getUserId() {
+    return userId;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setUserId(UUID userId) {
+    this.userId = userId;
   }
 
   @Override
@@ -51,20 +54,20 @@ public class UserTable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserTable userTable = (UserTable) o;
-    return Objects.equals(this.id, userTable.id);
+    UserWithIdAllOf userWithIdAllOf = (UserWithIdAllOf) o;
+    return Objects.equals(this.userId, userWithIdAllOf.userId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(userId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserTable {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("class UserWithIdAllOf {\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

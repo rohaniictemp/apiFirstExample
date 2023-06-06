@@ -18,9 +18,20 @@ public class SpringDocConfiguration {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title("loginApi")
-                                .description("defaultDescription")
-                                .version("0.1")
+                                .title("API FIRST DOCUMENTATION")
+                                .description("Sample User Management API")
+                                .contact(
+                                        new Contact()
+                                                .email("rohan.bhandari@iictechnologies.com")
+                                )
+                                .version("1.0")
+                )
+                .components(
+                        new Components()
+                                .addSecuritySchemes("BasicAuth", new SecurityScheme()
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("basic")
+                                )
                 )
         ;
     }

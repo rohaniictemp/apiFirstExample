@@ -1,5 +1,8 @@
 package org.openapitools.api;
 
+import java.util.UUID;
+import org.openapitools.model.User;
+import org.openapitools.model.UserWithId;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +28,14 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-25T11:47:48.424368300-07:00[America/Vancouver]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-06-06T13:14:03.551847800-07:00[America/Vancouver]")
 @Controller
-public class Login2ApiController implements Login2Api {
+public class UserApiController implements UserApi {
 
     private final NativeWebRequest request;
 
     @Autowired
-    public Login2ApiController(NativeWebRequest request) {
+    public UserApiController(NativeWebRequest request) {
         this.request = request;
     }
 
